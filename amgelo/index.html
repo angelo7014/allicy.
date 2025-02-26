@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>/* Resetando algumas propriedades padrão */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Helvetica', sans-serif;
+        background-color: #141414;
+        color: white;
+        margin: 0;
+    }
+    
+    /* Cabeçalho */
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #000;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    
+    header .logo {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: #e50914;
+    }
+    
+    header .menu a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-size: 1.1em;
+    }
+    
+    /* Carrossel */
+    .carousel {
+        padding-top: 80px; /* Para compensar o cabeçalho fixo */
+        position: relative;
+    }
+    
+    .carousel h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+        text-align: center;
+    }
+    
+    .carousel-container {
+        display: flex;
+        overflow: hidden;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .carousel-item {
+        width: 400px;
+        height: 600px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+    
+    .carousel-item-overlay {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+    }
+    
+    .carousel-item-overlay h3 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+    
+    .carousel-item-overlay button {
+        padding: 10px 20px;
+        background-color: #e50914;
+        border: none;
+        color: white;
+        font-size: 1.1em;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    .carousel-item-overlay button:hover {
+        background-color: #b20710;
+    }
+    
+    /* Lista de Filmes */
+    .movie-list {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .movie-list h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    
+    .movie-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .movie-item {
+        width: 200px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    
+    .movie-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+    
+    .movie-item:hover {
+        transform: scale(1.05);
+    }
+    
+    .movie-item h3 {
+        margin-top: 10px;
+        font-size: 1.2em;
+    }
+    
+    /* Modal */
+    .movie-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal-content {
+        background-color: #333;
+        padding: 20px;
+        width: 400px;
+        text-align: center;
+        border-radius: 10px;
+    }
+    
+    #closeModal {
+        color: white;
+        font-size: 2em;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    
+    #modalTitle {
+        margin-bottom: 20px;
+        font-size: 2em;
+    }
+    
+    #modalDescription {
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+    </style>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">Minha Netflix</div>
+        <div class="menu">
+            <a href="#">Início</a>
+            <a href="#">Filmes</a>
+            <a href="#">Séries</a>
+            <a href="#">Minha Conta</a>
+        </div>
+    </header>
+
+    <!-- Carrossel de Filmes -->
+    <section class="carousel">
+        <h2>Filmes em Destaque</h2>
+        <div class="carousel-container">
+            <div class="carousel-item" style="background-image: url('https://via.placeholder.com/600x900/000000/FFFFFF?text=Filme+1');">
+                <div class=,

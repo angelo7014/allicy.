@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 MOTIVOS PARA TI AMAR</title>
+    <style>
+        body {
+            background-color: #141414; /* Cor de fundo escura */
+            color: white; /* Texto branco */
+            font-family: 'Arial', sans-serif; /* Fonte moderna */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        #galeria {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .imagem {
+            display: none;
+            text-align: center;
+        }
+
+        .imagem.ativa {
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px; /* Limita a largura da imagem */
+            border-radius: 10px; /* Bordas arredondadas */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra para as imagens */
+        }
+
+        button {
+            background-color: #e50914; /* Cor do botão */
+            color: white; /* Texto do botão */
+            border: none;
+            border-radius: 5px; /* Bordas arredondadas */
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s; /* Transição suave */
+        }
+
+        button:hover {
+            background-color: #f40612; /* Cor do botão ao passar o mouse */
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Tamanho da fonte menor em telas pequenas */
+            }
+
+            button {
+                width: 100%; /* Botões ocupam toda a largura em telas pequenas */
+                margin: 5px 0; /* Margem vertical */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>10 MOTIVOS PRA TI AMAR</h1>
+    
+    <div id="galeria">
+        <div class="imagem ativa">
+            <h4>Você come de tudo comigo</h4>
+            <img src="./come tudo.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você deixa eu dormir em você</h4>
+            <img src="./deixa eu dormir.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você é muito fofinhaginha</h4>
+            <img src="./é fofinha.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você é mandraka</h4>
+            <img src="./é mandraka.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você tem um dedo muito gostosão</h4>
+            <img src="./tem um dedo gostoso.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você gosta de peixinhos</h4>
+            <img src="./gosta de peixinhos.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você sabe fazer brownie</h4>
+            <img src="./sabe fazer brownie.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você é uma tremenda gostosa</h4>
+            <img src="./corpo.jfif" alt="(peguei a imagem te stalkeando rs)">
+        </div>
+        <div class="imagem">
+            <h4>Você tem um olho lindo</h4>
+            <img src="./olho lindo.jfif" alt="">
+        </div>
+        <div class="imagem">
+            <h4>Você é a mulher mais linda do mundo inteirão</h4>
+            <img src="./beleza.jfif" alt="">
+        </div>
+    </div>
+    
+    <div style="text-align: center;">
+        <button id="voltar">Voltar</button>
+        <button id="avancar">Avançar</button>
+    </div>
+
+    <script>
+        let imagens = document.querySelectorAll('.imagem');
+        let indiceAtual = 0;
+
+        function mostrarImagem(indice) {
+            imagens.forEach((imagem, index) => {
+                imagem.classList.remove('ativa');
+                if (index === indice) {
+                    imagem.classList.add('ativa');
+                }
+            });
+        }
+
+        document.getElementById('voltar').addEventListener('click', () => {
+            indiceAtual = (indiceAtual > 0) ? indiceAtual - 1 : imagens.length - 1;
+            mostrarImagem(indiceAtual);
+        });
+
+        document.getElementById('avancar').addEventListener('click', () => {
+            indiceAtual = (indiceAtual < imagens.length - 1) ? indiceAtual + 1 : 0;
+            mostrarImagem(indiceAtual);
+        });
+
+        // Inicializa a primeira imagem
+        mostrarImagem(indiceAtual);
+    </script>
+</body>
+</html>
