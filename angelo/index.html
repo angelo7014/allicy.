@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leia Diariamente</title>
+    <style>
+        /* Modo Escuro */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818;
+            color: #f1f1f1;
+        }
+        header {
+            background-color: #1c1c1c;
+            padding: 15px;
+            text-align: center;
+            color: #ff66b2;
+        }
+        h1 {
+            margin: 0;
+        }
+        nav {
+            text-align: center;
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        footer {
+            background-color: #1c1c1c;
+            padding: 10px;
+            text-align: center;
+            color: #ff66b2;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .login-form {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #555;
+            color: #f1f1f1;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #ff3385;
+        }
+        .hidden {
+            display: none;
+        }
+        .counter {
+            font-size: 1.2em;
+            color: #ff66b2;
+        }
+        .romantic-message {
+            font-size: 1.5em;
+            color: #ff3385;
+            text-align: center;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container para os cards */
+        .user-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Estilo do card de usuário */
+        .user-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .user-card:hover {
+            transform: scale(1.05);
+        }
+
+        .user-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .user-card h3 {
+            text-align: center;
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            margin: 0;
+        }
+
+        /* Estilos do Modal */
+        .modal {
+            display: none; /* Inicialmente escondido */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-top: 100px;
+            text-align: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modal-content h2 {
+            color: #333;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+
+        }
+         /* Estilos gerais para o container */
+         .tabs-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Estilos para as abas */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            transition: background-color 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #ddd;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        /* Mostrar o conteúdo da aba ativa */
+        .tab input[type="radio"]:checked + label + .tab-content {
+            display: block;
+        }
+
+        /* Estilos para o botão da aba ativa */
+        .tab input[type="radio"]:checked + label {
+            background-color: #ff66b2;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    </style>
+    
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Leiadiariamente</h1>
+    </header>
+
+    <div id="loginPage" class="login-form">
+        <h2>Seja Bem Vindo(a) ao melhor site de leitura </h2>
+        <input type="password" id="password" placeholder="Digite sua senha">
+        <button onclick="login()">Entrar</button>
+        <p id="loginError" style="color: red; display: none;">Senha incorreta!</p>
+    </div>
+
+    <div id="mainPage" class="hidden">
+        <nav>
+            <a href="javascript:void(0)" onclick="showPage('home')">Início</a>
+            <a href="javascript:void(0)" onclick="showPage('etapas')">etapas</a>
+            <a href="javascript:void(0)" onclick="showPage('counter')">Contador de Dias</a>
+        </nav>
+
+        <section id="home" class="hidden">
+            <h2>Bem-vinda ao nosso mundo!</h2>
+            <div class="image-gallery">
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.46.59 PM (1).jpeg" alt="Foto do casal 1">
+                <p>Hoje, no Dia das Mulheres, eu queria começar te dizendo algo simples, mas que eu sinto no fundo do coração: você é incrível. Cada vez que penso em você, fico admirado com a mulher maravilhosa que você é. Você me inspira a ser melhor e, principalmente, me faz querer aproveitar mais a vida. Eu sou tão grato por ter você ao meu lado, por poder compartilhar cada dia contigo.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.46.59 PM (2).jpeg" alt="Foto do casal 2">
+                <p>
+                    E o que mais me encanta é ver a forma como você enfrenta a vida com tanta força e elegância. Quando você se dedica a algo, eu percebo o brilho nos seus olhos, a paixão com que você faz tudo. Não importa o que seja, você sempre dá o seu melhor. Isso me deixa tão orgulhoso de você, e, ao mesmo tempo, me faz querer ser uma pessoa melhor, só para acompanhar a sua energia.
+                </p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.46.59 PM.jpeg" alt="Foto do casal 3">
+                <p>Eu admiro tanto sua coragem, sabia momo? Cada obstáculo que você supera me ensina algo novo sobre como ser mais forte e mais leve ao mesmo tempo. Você tem esse jeito de fazer com que qualquer desafio pareça mais fácil, só pelo modo como lida com ele. Eu fico aqui, só observando, e me sinto cada vez mais apaixonado pela sua maneira de ver o mundo e agir.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.00 PM (1).jpeg" alt="Foto do casal 3">
+                <p>É engraçado como você consegue ser tão forte e, ao mesmo tempo, tão suave. Quando as coisas ficam difíceis, é você quem me dá a calma e a força que preciso para seguir em frente. Eu fico realmente impressionado com essa sua habilidade de ser uma mulher tão completa, que sabe ser determinada e, ao mesmo tempo, extremamente gentil. Você tem algo que me fascina todos os dias.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.00 PM (2).jpeg" alt="Foto do casal 3">
+                <p>E aí tem o outro lado de você, aquele que faz meu coração bater mais rápido: o seu carinho. Você tem um jeito tão especial de fazer tudo parecer mais bonito. A sua gentileza, o seu jeito de cuidar, isso tudo me faz sentir o quanto sou sortudo por ter você. Quando você sorri para mim, o mundo inteiro parece se tornar um lugar mais tranquilo. Não tem nada que eu queira mais do que te ver feliz.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.00 PM.jpeg" alt="Foto do casal 3">
+                <p>Você sabe, às vezes fico pensando que não há nada que você não seja capaz de fazer. A sua inteligência minha princesinha, sua forma de pensar e seu jeito único de abordar a vida me deixam tão impressionado. Eu vejo você conquistando o mundo, e não consigo deixar de pensar: "Eu tenho a sorte de estar ao lado dessa mulher incrível." Você tem o dom de me inspirar a ser alguém melhor todos os dias.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.01 PM (1).jpeg" alt="Foto do casal 3">
+                <p>E eu acho que o que mais me faz te admirar é o modo como você vai em busca dos seus sonhos. Não importa o que aconteça, você nunca desiste. É uma das coisas que mais me faz te amar, sabia? Você me ensina, constantemente, o que significa ter foco, amor e dedicação por tudo o que você quer alcançar. E eu só posso estar aqui, te apoiando e celebrando cada vitória sua.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.01 PM (2).jpeg" alt="Foto do casal 3">
+                <p>Com você, aprendi que a vida é mais leve quando compartilhamos o que somos. Você me mostra, todos os dias, como o amor e a amizade caminham juntos, e como são a base de qualquer relação. Me sinto em casa, completo, quando estou ao seu lado. Não é apenas o romance, mas a parceria, o carinho, o respeito que temos. E isso é algo raro.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.01 PM (3).jpeg" alt="Foto do casal 3">
+                <p>Eu realmente não consigo te agradecer o suficiente por tudo que você me ensina. Você tem uma sabedoria tranquila que me faz enxergar a vida de uma maneira mais bonita e mais simples. Cada palavra sua, cada gesto, me faz aprender mais sobre o que significa ser alguém melhor. Não há um dia que passe em que eu não perceba o quanto sou grato por ter você.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.01 PM.jpeg" alt="Foto do casal 3">
+                <p>E é engraçado, porque às vezes fico pensando no futuro e como ele será maravilhoso com você ao meu lado. Sei que, com você, posso alcançar tudo o que sonho. Não só porque você é forte e decidida, mas também porque você tem esse amor que me faz acreditar em mim mesmo. E é isso que me dá forças para continuar, para perseguir cada sonho com você.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.02 PM (1).jpeg" alt="Foto do casal 3">
+                <p>E, honestamente, ao lado de você, sinto que qualquer desafio é algo que podemos enfrentar juntos. Sua presença traz calma aos momentos difíceis. Eu sei que, com você, posso encarar qualquer coisa que venha pela frente. Porque, no final das contas, o que importa é que estamos juntos, sempre prontos para nos apoiar e seguir em frente. Isso é tudo o que eu preciso.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.02 PM (2).jpeg" alt="Foto do casal 4">
+                <p>Com você, tudo parece mais fácil, mais leve. Não importa o que aconteça, quando estamos juntos, sei que podemos enfrentar qualquer coisa. Essa sensação de estar ao lado de alguém tão forte, tão cheia de vida, me faz acreditar ainda mais em nós dois. Eu amo o fato de que estamos criando nossa história, nossa vida juntos. E a cada dia, me sinto mais apaixonado por tudo o que somos.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.02 PM.jpeg" alt="Foto do casal 5">
+                <p>E sabe, a cada vez que penso no futuro, fico tão animado! Porque eu sei que, com você, qualquer sonho é possível. Você me faz acreditar, de verdade, que não há limites para o que podemos conquistar. Estar ao seu lado me dá coragem para seguir em frente, para lutar por tudo o que quero, sabendo que você está comigo em cada passo. Isso me enche de esperança e alegria.
+
+                </p>
+                <img src="./images.jpg/WhatsApp Image 2025-03-05 at 1.47.03 PM (1).jpeg" alt="Foto do casal 6">
+                <p>E não é só pelo que você conquista, mas pela forma como você vê o mundo. Você tem essa habilidade maravilhosa de fazer qualquer situação parecer mais bonita, mais positiva. Quando estou com você, tudo parece ter um toque de magia. Eu me sinto mais vivo, mais inspirado, por causa da sua luz. E, por isso, a cada dia, me apaixono mais e mais por quem você é</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.03 PM (2).jpeg" alt="Foto do casal 3">
+                <p>E hoje, no Dia das Mulheres, eu só queria te agradecer, de coração. Você é uma mulher tão maravilhosa e merece todo o amor e reconhecimento do mundo. Eu sou grato por cada sorriso seu, por cada palavra de carinho, por tudo o que você representa na minha vida. Eu não sei o que faria sem você, e é por isso que hoje, mais do que nunca, celebro você.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.03 PM (3).jpeg" alt="Foto do casal 3">
+                <p>Quero que você saiba o quanto você é única para mim. Você não só é a mulher dos meus sonhos, mas também a minha maior inspiração. Tudo o que você é, tudo o que faz, me faz querer ser uma pessoa melhor. E não há nada mais maravilhoso do que saber que vou passar o resto da minha vida ao lado de alguém tão especial como você.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.03 PM.jpeg" alt="Foto do casal 3">
+                <p>Eu me sinto tão abençoado por te ter como minha parceira. Cada dia ao seu lado é um presente, e a cada momento que passamos juntos, percebo mais o quanto você é a pessoa com quem quero construir minha vida. Não há nada mais importante para mim do que ver você feliz, ver você crescendo e conquistando tudo o que merece.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.04 PM (1).jpeg" alt="Foto do casal 3">
+                <p>Com você, tudo é possível. Eu vejo a forma como você encara a vida, com tanto amor e dedicação, e isso me inspira profundamente. Quando olho para você, vejo o futuro, um futuro repleto de tudo o que sonhamos. E é com você que quero construir esse futuro, sempre ao seu lado, em cada passo, em cada conquista.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.04 PM (2).jpeg" alt="Foto do casal 3">
+                <p>Eu só quero que você saiba que, hoje e sempre, você é a minha maior alegria. O amor que sinto por você não pode ser explicado em palavras, porque é algo que vai além disso. Todos os dias, você me ensina o que é o verdadeiro amor, e eu não posso esperar para passar ainda mais momentos especiais ao seu lado.</p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.04 PM (3).jpeg" alt="Foto do casal 3">
+                <p>Neste Dia das Mulheres, e em todos os outros dias, quero te agradecer por ser essa pessoa incrível, que me faz sentir tão amado e completo. Você é tudo o que eu sempre sonhei, e estar ao seu lado é o maior presente da minha vida. Te amo com todo o meu coração.
+                </p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.04 PM.jpeg" alt="Foto do casal 3">
+                <p>Você é a razão do meu sorriso diário. Tudo o que sou e tudo o que faço, faço por nós dois. Ao seu lado, aprendi que o amor é a força mais poderosa que existe, e é o que nos move. E por isso, não há nada que eu não faria para te ver feliz.
+
+                </p>
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.05 PM (1).jpeg" alt="Foto do casal 3">
+                Ti amo de uma forma que palavras nunca vão conseguir expressar. Você é minha mulher, minha amiga, minha parceira, minha fonte de inspiração. Não há nada que eu deseje mais do que passar o resto da minha vida ao seu lado, vivendo e conquistando o que for necessário para nossa felicidade.
+            </div>
+            <p>E, por fim, minha amolinha, quero te dizer que, neste Dia das Mulheres, e todos os outros, você é a razão da minha felicidade. Sou eternamente grato por tudo o que você faz e por ser quem você é. Te amo mais do que qualquer palavra poderia descrever, e sempre estarei ao seu lado, em todos os momentos da nossa vida.
+
+            </p>
+        - 
+        - 
+        - 
+        - 
+        -
+        </section>
+
+        <section id="leitura" class="hidden">
+            <h2>Leitura</h2>
+            <p>Desde o primeiro olhar até o nosso primeiro beijo, tudo foi um sonho que se tornou realidade. Cada dia contigo é uma nova página do nosso livro de amor, e eu sou grato por cada capítulo que escrevemos juntos. Não importa o que o futuro traga, eu sei que juntos somos invencíveis. Você é a razão de todos os meus sorrisos!</p>
+             <img src="" alt="">
+
+             <p>Desde o primeiro olhar até o nosso primeiro beijo, tudo foi um sonho que se tornou realidade. Cada dia contigo é uma nova página do nosso livro de amor, e eu sou grato por cada capítulo que escrevemos juntos. Não importa o que o futuro traga, eu sei que juntos somos invencíveis. Você é a razão de todos os meus sorrisos!</p>
+             <img src="" alt="">
+
+             <p>Desde o primeiro olhar até o nosso primeiro beijo, tudo foi um sonho que se tornou realidade. Cada dia contigo é uma nova página do nosso livro de amor, e eu sou grato por cada capítulo que escrevemos juntos. Não importa o que o futuro traga, eu sei que juntos somos invencíveis. Você é a razão de todos os meus sorrisos!</p>
+             <img src="" alt="">
+
+             <p>Desde o primeiro olhar até o nosso primeiro beijo, tudo foi um sonho que se tornou realidade. Cada dia contigo é uma nova página do nosso livro de amor, e eu sou grato por cada capítulo que escrevemos juntos. Não importa o que o futuro traga, eu sei que juntos somos invencíveis. Você é a razão de todos os meus sorrisos!</p>
+             <img src="" alt="">
+        </section>
+
+        <section id="etapas" class="hidden">
+          <h2>Etapas</h2>
+
+        <!-- Card de usuário 1 -->
+        <div class="user-card">
+            <a href="./aba.html" target="_blank">
+                <img src="./imagens/WhatsApp Image 2025-03-05 at 1.47.06 PM.jpeg" alt="Foto de Usuário 1" width="300" height="300"> 
+                <h3>Namoro</h3>
+            </a>
+        </div>
+
+        <!-- Card de usuário 2 -->
+        <div class="user-card" onclick="openModal('user2')">
+            <img src="./imagens/Design sem nome.png" alt="Foto de Usuário 2"width="300" height="300">
+            <h3>Noivado</h3>
+        </div>
+
+        <!-- Card de usuário 3 -->
+        <div class="user-card" onclick="openModal('user3')">
+            <img src="./imagens/Design sem nome.png" alt="Foto de Usuário 3"width="300" height="300">
+            <h3>Casamento</h3>
+        </div>
+    </div>
+
+    <!-- Modal (janela com informações do usuário) -->
+    <div id="user1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('user1')">&times;</span>
+            <h2>Detalhes de Usuário 1</h2>
+            <p>Aqui estão algumas informações detalhadas sobre o Usuário 1.</p>
+        </div>
+    </div>
+
+    <div id="user2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('user2')">&times;</span>
+            <h2>Detalhes de Usuário 2</h2>
+            <p>Aqui estão algumas informações detalhadas sobre o Usuário 2.</p>
+        </div>
+    </div>
+
+    <div id="user3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('user3')">&times;</span>
+            <h2>Detalhes de Usuário 3</h2>
+            <p>Aqui estão algumas informações detalhadas sobre o Usuário 3.</p>
+        </div>
+    </div>
+
+        </section>
+
+        <section id="counter" class="hidden">
+            <h2>Contador de Dias</h2>
+            <p>Já se passaram <span id="daysCounter" class="counter"></span> desde o pedido de namoro </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Leiadiariamente - Allicy Helena</p>
+    </footer>
+
+    <script>
+        const validPassword = "allicyeuteamo";
+
+        function login() {
+            const password = document.getElementById("password").value;
+            
+            if (password === validPassword) {
+                document.getElementById("loginPage").classList.add("hidden");
+                document.getElementById("mainPage").classList.remove("hidden");
+                showPage('home');
+                updateDaysCounter();
+            } else {
+                document.getElementById("loginError").style.display = 'block';
+            }
+        }
+
+        function showPage(page) {
+            const pages = ['home', 'leitura', 'etapas', 'counter'];
+            pages.forEach(p => {
+                document.getElementById(p).classList.add("hidden");
+            });
+            document.getElementById(page).classList.remove("hidden");
+        }
+
+        function updateDaysCounter() {
+            // Defina a data do primeiro dia de namoro
+            const firstDate = new Date("2024-08-30"); // Data do primeiro encontro
+            const today = new Date();
+            const diffTime = Math.abs(today - firstDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            document.getElementById("daysCounter").innerText = diffDays;
+           
+        // Função para abrir o modal
+        function openModal(userId) {
+            document.getElementById(userId).style.display = 'block';
+        }
+
+        // Função para fechar o modal
+        function closeModal(userId) {
+            document.getElementById(userId).style.display = 'none';
+        }
+
+        // Fecha o modal se o usuário clicar fora dele
+        window.onclick = function(event) {
+            if (event.target.classList.contains("modal")) {
+                event.target.style.display = "none";
+            }
+        }
+
+        }
+    </script>
+    
+</body>
+</html>
